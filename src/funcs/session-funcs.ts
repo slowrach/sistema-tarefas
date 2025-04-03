@@ -1,16 +1,16 @@
 import { Request, Response } from "express"
-import { prisma } from "@/database/prisma"
-import { z } from "zod"
-import { AppError } from "@/utils/AppError"
+import { prisma } from "../database/prisma"
+import { z } from "zod" 
+import { AppError } from "../utils/AppError"
 import { compare } from "bcrypt"
-import { authConfig } from "@/configs/auth"
-import { sign } from "jsonwebtoken"
+import { authConfig } from "../configs/auth"
+import { sign } from "jsonwebtoken" 
 
 export class SessionFuncs {
    async create(request: Request, response: Response) {
       const bodySchema = z.object({
          email: z.string().email(),
-         password: z.string()
+         password: z.string().trim().min(5)
       })
 
       const { email, password } = bodySchema.parse(request.body)
@@ -29,10 +29,7 @@ export class SessionFuncs {
 
       const { expiresIn, secret } = authConfig.jwt
 
-      const token = sign({ role: user.role ?? "customer" }, secret, {
-         subject: user.id,
-         expiresIn,
-      })
+      const token = sign({ role: user.role ?? "member" }, secret, { subject: user.id, expiresIn })
 
       const { password: justPassword, ...withoutPassword } = user
 

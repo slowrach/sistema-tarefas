@@ -1,26 +1,13 @@
 {
-  "name": "api-delivery",
+  "name": "sistema-tarefas",
   "version": "1.0.0",
-  "engines": {
-    "node": ">=18"
-  },
   "scripts": {
     "dev": "tsx watch --env-file .env src/server.ts",
-    "test:dev": "set NODE_OPTIONS=--experimental-vm-modules && npx jest --watchAll --runInBand",
-    "build": "tsup src --out-dir build",
-    "start": "node build/server.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/slowrach/api-delivery.git"
+    "test:dev": "set NODE_OPTIONS=--experimental-vm-modules && npx jest"
   },
   "author": "Raquel Queiroz",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/slowrach/api-delivery/issues"
-  },
-  "homepage": "https://github.com/slowrach/api-delivery#readme",
-  "description": "Projeto completo de uma api para serviço de delivery, utilizando banco de dados, validação e testes automatizados",
+  "description": "API para gerenciamento de tarefas",
   "dependencies": {
     "@prisma/client": "^6.5.0",
     "bcrypt": "^5.1.1",
@@ -41,7 +28,6 @@
     "supertest": "^7.1.0",
     "ts-jest": "^29.2.6",
     "ts-node": "^10.9.2",
-    "tsup": "^8.4.0",
     "tsx": "^4.19.3",
     "typescript": "^5.8.2"
   }

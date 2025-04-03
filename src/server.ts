@@ -1,7 +1,5 @@
-import { app } from "@/app"
-import { env } from "./env"
+import { app } from "./app"
 
-const PORT = env.PORT 
+const PORT = 3333
 
-
-app.listen(PORT, () => console.log("Server is running"))
+app.listen(PORT)

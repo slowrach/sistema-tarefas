@@ -8,53 +8,74 @@ datasource db {
 }
 
 enum UserRole {
-  customer 
-  sale
+  admin
+  member
 }
 
-enum DeliveryStatus {
-  processing
-  sent
-  delivered
+enum TaskStatus {
+  pending
+  in_progress
+  completed
 }
 
-model User{
+enum TaskPriority {
+  high
+  medium
+  low
+}
+
+model User {
   id String @id @default(uuid())
   name String
   email String
   password String
-  role UserRole @default(customer)
-  deliveries Delivery[]
+  role UserRole @default(member)
   createdAt DateTime @default(now())
   updatedAt DateTime? @updatedAt
+
+  member Members?
+  task Tasks[]
 
   @@map("users")
 }
 
-model Delivery{
+model Teams {
   id String @id @default(uuid())
-  userId String
-  product String
-  status DeliveryStatus @default(processing)
-
-  user User @relation(fields: [userId], references: [id])
-
-  logs Logs[]
-
+  name String
+  description String?
   createdAt DateTime @default(now())
   updatedAt DateTime? @updatedAt
 
-  @@map("deliveries")
+  member Members[]
+  task Tasks[]
+
+  @@map("teams")
 }
 
-model Logs{
+model Members {
   id String @id @default(uuid())
-  description String
-  deliveryId String
+  userId String @unique
+  teamId String
+  
+  user User @relation(fields: [userId], references: [id])
+  team Teams @relation(fields: [teamId], references: [id])
 
-  delivery Delivery @relation(fields: [deliveryId], references: [id])
+  @@map("members")
+}
 
+model Tasks {
+  id String @id @default(uuid())
+  title String
+  description String?
+  status TaskStatus @default(pending)
+  priority TaskPriority @default(high)
+  assignedTo String
+  teamId String
   createdAt DateTime @default(now())
+  updatedAt DateTime? @updatedAt
 
-  @@map("logs")
+  user User @relation(fields: [assignedTo], references: [id])
+  team Teams @relation(fields: [teamId], references: [id])
+
+  @@map("tasks")
 }
