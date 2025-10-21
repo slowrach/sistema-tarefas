@@ -1,7 +1,10 @@
 @import "tailwindcss";
 
 @theme {
-
+  --color-green-light: #75C4A6;
+  --color-background: #495672;
+  --color-blue-light: #7CB4D6;
+  --color-red-light: #C64755;
 }
 
 :root {
