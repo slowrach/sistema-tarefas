@@ -1,10 +1,11 @@
 import { BrowserRouter } from "react-router";
 import { Auth } from "./auth";
+import { Member } from "./member";
 
 export function Routes(){
    return (
       <BrowserRouter>
-         <Auth />
+         <Member />
       </BrowserRouter>
    )
 }
