@@ -5,7 +5,7 @@ import { Member } from "./member";
 export function Routes(){
    return (
       <BrowserRouter>
-         <Member />
+         <Auth />
       </BrowserRouter>
    )
 }
