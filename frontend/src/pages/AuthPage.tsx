@@ -7,7 +7,7 @@ export function AuthPage() {
   const [signUp, setSignUp] = useState(false);
 
   return (
-    <div className="h-screen w-screen bg-blue-light flex items-center justify-center">
+    <div className="h-svh w-svw bg-blue-light flex items-center justify-center">
       <div className="bg-white flex flex-col md:flex-row rounded-md md:w-full md:m-40">
         <header className="flex md:flex-col items-center justify-center bg-background p-6 rounded-t-md md:rounded-t-none md:rounded-l-md lg:w-[40vw]">
           <img src={icon} alt="ícone de tarefas" className="w-15 md:w-30" />
